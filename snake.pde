@@ -18,17 +18,17 @@ void draw()
   
   if (option == 1)
   {
-    
+    background(45);
   }
   
   if (option == 2)
   {
-    
+    background(90);
   }
   
   if (option == 3)
   {
-    
+    background(145);
   }
 }
 
