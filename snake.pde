@@ -5,9 +5,9 @@ void setup()
   size(500, 500);
 }
 
-int option = 0;
-int speed = 0;
-int time = 0;
+int option = 0; // Used as a variable to see what the user wants 
+int speed = 0; // Variable determines how often The snake moves forward once
+int time = 0; // Counts time which is used in conjunction with Speed to determine when to move snake
 
 void draw()
 {
@@ -24,7 +24,6 @@ void draw()
     text("Press 1 for Slug Mode", width/4, (height/4)*3);
     text("Press 2 for Snake Mode", (width/4)*2, (height/4)*3);
     text("Press 3 for Python Mode", (width/4)*3, (height/4)*3);
-    
   }
   
   else
