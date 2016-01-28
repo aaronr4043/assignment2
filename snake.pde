@@ -49,3 +49,8 @@ void keyPressed()
     option = 3;
   }
 }
+
+void restart()
+{
+  //Reset all varaiables to the default values
+}
