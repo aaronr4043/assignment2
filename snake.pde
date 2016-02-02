@@ -3,7 +3,7 @@
 void setup()
 {
   size(500, 500);
-}
+}//end setup
 
 int option = 0; // Used as a variable to see what the user wants 
 int speed = 0; // Variable determines how often The snake moves forward once
@@ -30,7 +30,7 @@ void draw()
     text("Press 1 for Slug Mode", width/4, (height/4)*3);
     text("Press 2 for Snake Mode", (width/4)*2, (height/4)*3);
     text("Press 3 for Python Mode", (width/4)*3, (height/4)*3);
-  }
+  }//end if
   
   else
   {
@@ -40,19 +40,19 @@ void draw()
     {
       background(45);
       speed = 7;
-    }
+    }//end if
   
     if (option == 2)
     {
       background(90);
       speed = 5;
-    }
+    }//end if
   
     if (option == 3)
     {
       background(145);
       speed = 3;
-    }
+    }//end if
     
     fill(255,65,0);
     stroke(0);
@@ -69,61 +69,61 @@ void draw()
     if(frameRate%time == speed)
     {
       snakeMove();
-    } 
-  }
+    } //enf if
+  }//end if
   
   println(theta);
   
-}
+}//end draw
 
 void keyPressed()
 {
   if (key == '1' && option==0)
   {
     option = 1;
-  }
+  }//end if
   
   if (key == '2' && option==0)
   {
     option = 2;
-  }
+  }//end if
   
   if (key == '3' && option==0)
   {
     option = 3;
-  }
+  }//end if
   
   if (key == 'm')
   {
     option = 0;
-  }
+  }//end if
   
   if (key == 'w' && option>0)
   {
     theta = 90;
-  }
+  }//end if
   
   if (key == 'a' && option>0)
   {
     theta = 180;
-  }
+  }//end if
   
   if (key == 's' && option>0)
   {
     theta = 270;
-  }
+  }//end if
   
   if (key == 'd' && option>0)
   {
     theta = 0;
-  }
-}
+  }//end if
+}//end KeyPress()
 
 void restart()
 {
   //Reset all varaiables to the default values
   time = 0;
-}
+}//end restart()
 
 void snakeMove()
 {
@@ -133,7 +133,7 @@ void snakeMove()
     {
       snakePartX[i]=snakePartX[i-1];
       snakePartY[i]=snakePartY[i-1];
-    }
+    }//end if
     
     else
     {
@@ -157,5 +157,5 @@ void snakeMove()
         snakePartY[1] = snakePartY[1] + (height/50);
       }//end if
     }//end else
-  }
-}
+  }//end if
+}//end snakeMove()
