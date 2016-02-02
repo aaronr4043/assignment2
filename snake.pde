@@ -10,6 +10,9 @@ int speed = 0; // Variable determines how often The snake moves forward once
 int time = 0; // Counts time which is used in conjunction with Speed to determine when to move snake
 int foodX = round(random(width));
 int foodY = round(random(height));
+int snakeLength = 3;
+int snakePartX[];
+int snakePartY[];
 
 void draw()
 {
@@ -32,16 +35,6 @@ void draw()
   {
     time ++;
     
-    fill(255,0,0);
-    stroke(0);
-    rect(foodX,foodY,8,8);
-    fill(0);
-    stroke(0);
-    rect(0,0,width,8);
-    rect(0,height-8,width,8);
-    rect(0,0,8,height);
-    rect(width-8,0,8,height);
-    
     if (option == 1)
     {
       background(45);
@@ -60,10 +53,24 @@ void draw()
       speed = 3;
     }
     
+    fill(255,65,0);
+    stroke(0);
+    rect(foodX,foodY,8,8);
+    fill(0);
+    stroke(0);
+    
+    //draw the new head of the snake...
+  stroke(0);
+  fill(0);
+  rect(snakePartX[0], snakePartY[0], (width/50), (height/50));
+  //...then erase the back end of the snake.
+  fill(255);
+  rect(snakePartX[snakeLength], snakePartY[snakeLength], (width/50), (height/50));
+    
     if(frameRate%time == speed)
     {
       snakeMove();
-    }
+    } 
   }
 }
 
@@ -98,5 +105,9 @@ void restart()
 
 void snakeMove()
 {
-  
+  for(int i=0; i<snakeLength; i++)
+  {
+    snakePartX[i]=snakePartX[i-1];
+    snakePartY[i]=snakePartY[i-1];
+  }
 }
