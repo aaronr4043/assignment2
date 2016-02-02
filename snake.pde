@@ -11,8 +11,9 @@ int time = 0; // Counts time which is used in conjunction with Speed to determin
 int foodX = round(random(width));
 int foodY = round(random(height));
 int snakeLength = 3;
-int snakePartX[];
-int snakePartY[];
+int[] snakePartX = new int[1000];
+int[] snakePartY = new int[1000];
+int theta = 0;
 
 void draw()
 {
@@ -59,19 +60,20 @@ void draw()
     fill(0);
     stroke(0);
     
-    //draw the new head of the snake...
-  stroke(0);
-  fill(0);
-  rect(snakePartX[0], snakePartY[0], (width/50), (height/50));
-  //...then erase the back end of the snake.
-  fill(255);
-  rect(snakePartX[snakeLength], snakePartY[snakeLength], (width/50), (height/50));
+    stroke(0);
+    fill(0);
+    rect(snakePartX[1], snakePartY[1], (width/50), (height/50));
+    fill(255);
+    rect(snakePartX[snakeLength], snakePartY[snakeLength], (width/50), (height/50));
     
     if(frameRate%time == speed)
     {
       snakeMove();
     } 
   }
+  
+  println(theta);
+  
 }
 
 void keyPressed()
@@ -95,6 +97,26 @@ void keyPressed()
   {
     option = 0;
   }
+  
+  if (key == 'w' && option>0)
+  {
+    theta = 90;
+  }
+  
+  if (key == 'a' && option>0)
+  {
+    theta = 180;
+  }
+  
+  if (key == 's' && option>0)
+  {
+    theta = 270;
+  }
+  
+  if (key == 'd' && option>0)
+  {
+    theta = 0;
+  }
 }
 
 void restart()
@@ -107,7 +129,33 @@ void snakeMove()
 {
   for(int i=0; i<snakeLength; i++)
   {
-    snakePartX[i]=snakePartX[i-1];
-    snakePartY[i]=snakePartY[i-1];
+    if(i != 0)
+    {
+      snakePartX[i]=snakePartX[i-1];
+      snakePartY[i]=snakePartY[i-1];
+    }
+    
+    else
+    {
+      if(theta == 0) //send snake to the right
+      {
+        snakePartX[1] = snakePartX[1] + (width/50);
+      }//end if
+      
+      if(theta == 0) //Send Snake Upwards
+      {
+        snakePartY[1] = snakePartY[1] - (height/50);
+      }//end if
+      
+      if(theta == 0) //Send snake to the left
+      {
+        snakePartX[1] = snakePartX[1] - (width/50);
+      }//end if
+      
+      if(theta == 0) //Send snake south
+      {
+        snakePartY[1] = snakePartY[1] + (height/50);
+      }//end if
+    }//end else
   }
 }
