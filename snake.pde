@@ -8,6 +8,8 @@ void setup()
 int option = 0; // Used as a variable to see what the user wants 
 int speed = 0; // Variable determines how often The snake moves forward once
 int time = 0; // Counts time which is used in conjunction with Speed to determine when to move snake
+int foodX = round(random(width));
+int foodY = round(random(height));
 
 void draw()
 {
@@ -29,6 +31,16 @@ void draw()
   else
   {
     time ++;
+    
+    fill(255,0,0);
+    stroke(0);
+    rect(foodX,foodY,8,8);
+    fill(0);
+    stroke(0);
+    rect(0,0,width,8);
+    rect(0,height-8,width,8);
+    rect(0,0,8,height);
+    rect(width-8,0,8,height);
     
     if (option == 1)
     {
