@@ -50,7 +50,7 @@ void draw()
     
     if(frameRate%time == speed)
     {
-      //Main Snake Game Goes In Here
+      snakeMove();
     }
   }
 }
@@ -82,4 +82,9 @@ void restart()
 {
   //Reset all varaiables to the default values
   time = 0;
+}
+
+void snakeMove()
+{
+  
 }
