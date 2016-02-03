@@ -109,20 +109,9 @@ void restart() // Resets all variables to default states
 
 void getFood() // Gets Co ords for food 
 {
-  foodX=(round(random(width)));
-  foodY=(round(random(width)));
-  for(int i=0; i<6; i++)
-  {
-    if(foodX%5!=0)
-    {
-      foodX+=1;
-    }
-    
-    if(foodY%5 !=0)
-    {
-      foodY+=1;
-    }
-  }
+  foodX=10*(round(random(width/10)));
+  foodY=10*(round(random(width/10)));
+  
 }
 
 void snakeMove() //Moves the snakeparts in the correct angles chosen by the user
