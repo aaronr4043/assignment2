@@ -54,6 +54,7 @@ void draw() // Contains the menu and calls all the functions for the Snake Game
     {
       snakeMove();
       display();
+      snakeAlive();
     } //enf if
   }//end else
 }//end draw
@@ -62,7 +63,7 @@ void display() // Function for Updating what is seen on screen
 {
    if (snakePartX[1]==foodX && snakePartY[1]==foodY)
     {
-    snakeLength+=2;
+    snakeLength+=20;
     redo=true;
     while(redo)
     {
@@ -148,6 +149,19 @@ void snakeMove() //Moves the snakeparts in the correct angles chosen by the user
     }//end else 
   }//end if
 }//end snakeMove()
+
+void snakeAlive()
+{
+  if(snakePartX[1]>(width) || snakePartX[1] < 0)
+  {
+    time=0;
+  }
+    
+  if(snakePartY[1]>(height) || snakePartY[1] <0)
+  {  
+    time=0;
+  }
+}
 
 void keyPressed() // Contains all the controls
 {
