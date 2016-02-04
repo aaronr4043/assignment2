@@ -10,6 +10,7 @@ int foodY; //Y Co Ord for food
 int snakeLength = 5; //Length of the snake
 int[] snakePartX = new int[2500]; //Array of X Co Ords
 int[] snakePartY = new int[2500]; //Array of Y Co Ords
+boolean run = true;
 
 
 void setup() //Setup Declares the window size and calls functions which set variables
@@ -38,23 +39,31 @@ void draw() // Contains the menu and calls all the functions for the Snake Game
   
   else
   {
-    if(time == 0)
+    if(run == true)
     {
-      background(255);
-    }
+      if(time == 0)
+      {
+        background(255);
+      }
     
-    time+=1;
-    fill(255,0,0);
-    stroke(0);
-    rect(foodX,foodY,8,8);
-    fill(0);
-    stroke(0);
+      if(option == 4)
+      {
+        println("Hi");
+      }
     
-    if(time % speed == 0)
-    {
-      snakeMove();
-      display();
-      snakeAlive();
+      time+=1;
+      fill(255,0,0);
+      stroke(0);
+      rect(foodX,foodY,8,8);
+      fill(0);
+      stroke(0);
+    
+      if(time % speed == 0)
+      {
+        snakeMove();
+        display();
+        snakeAlive();
+      }
     } //enf if
   }//end else
 }//end draw
@@ -102,10 +111,11 @@ void restart() // Resets all variables to default states
   }
   getFood();
   
-  snakeLength=5;
-  time=0;
-  theta=0;
-  redo=true;
+  snakeLength = 5;
+  time = 0;
+  theta = 0;
+  redo = true;
+  run = true;
 }
 
 void getFood() // Gets Co ords for food 
@@ -154,12 +164,23 @@ void snakeAlive()
 {
   if(snakePartX[1]>(width) || snakePartX[1] < 0)
   {
-    time=0;
+    option = 4;
+    run = false;
   }
     
   if(snakePartY[1]>(height) || snakePartY[1] <0)
   {  
-    time=0;
+    option = 4;
+    run = false;
+  }
+  
+  for(int i=snakeLength; i>1; i--)
+  {
+    if(snakePartX[1] == snakePartX[i] && snakePartY[1] == snakePartY[i])
+    {
+      option = 4;
+      run = false;
+    }
   }
 }
 
