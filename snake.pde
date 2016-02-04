@@ -11,6 +11,7 @@ int snakeLength = 5; //Length of the snake
 int[] snakePartX = new int[2500]; //Array of X Co Ords
 int[] snakePartY = new int[2500]; //Array of Y Co Ords
 boolean run = true;
+String score;
 
 
 void setup() //Setup Declares the window size and calls functions which set variables
@@ -46,11 +47,6 @@ void draw() // Contains the menu and calls all the functions for the Snake Game
         background(255);
       }
     
-      if(option == 4)
-      {
-        println("Hi");
-      }
-    
       time+=1;
       fill(255,0,0);
       stroke(0);
@@ -63,6 +59,17 @@ void draw() // Contains the menu and calls all the functions for the Snake Game
         snakeMove();
         display();
         snakeAlive();
+      }
+      
+      if(run==false)
+      {
+        background(255);
+        fill(0);
+        textSize(20);
+        score = str(snakeLength-5);
+        text("Your Score", width/2, height/10);
+        text(score, width/2, (height/10)*2);
+        text("Press 'M' To Return The Menu", width/2, (height/10)*8);
       }
     } //enf if
   }//end else
