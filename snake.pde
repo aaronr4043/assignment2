@@ -8,6 +8,7 @@ boolean redo = true; // Used to make some things Loop
 boolean run = true;
 String score;
 
+Food food = new Food(foodX, foodY);
 
 void setup() //Setup Declares the window size and calls functions which set variables
 {
@@ -118,13 +119,6 @@ void restart() // Resets all variables to default states
   theta = 0;
   redo = true;
   run = true;
-}
-
-void getFood() // Gets Co ords for food 
-{
-  foodX=10*(round(random(width/10)));
-  foodY=10*(round(random(width/10)));
-  
 }
 
 void snakeMove() //Moves the snakeparts in the correct angles chosen by the user
