@@ -5,11 +5,6 @@ int speed = 0; // Variable determines how often The snake moves forward once
 int time = 0; // Counts time which is used in conjunction with Speed to determine when to move snake
 int theta = 0; // Angles at which the snake may travel
 boolean redo = true; // Used to make some things Loop
-int foodX; //X Co Ord for food
-int foodY; //Y Co Ord for food
-int snakeLength = 5; //Length of the snake
-int[] snakePartX = new int[2500]; //Array of X Co Ords
-int[] snakePartY = new int[2500]; //Array of Y Co Ords
 boolean run = true;
 String score;
 
