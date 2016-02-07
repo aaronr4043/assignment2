@@ -8,12 +8,13 @@ boolean redo = true; // Used to make some things Loop
 boolean run = true;
 String score;
 
-Food food = new Food(foodX, foodY);
+Food food = new Food(10*(round(random(width/10))), 10*(round(random(width/10))));
+Segments snake = new Segments();
 
 void setup() //Setup Declares the window size and calls functions which set variables
 {
   size(500, 500);
-  getFood();
+  food.getFood();
   restart();
 }//end setup
 
@@ -46,13 +47,13 @@ void draw() // Contains the menu and calls all the functions for the Snake Game
       time+=1;
       fill(255,0,0);
       stroke(0);
-      rect(foodX,foodY,8,8);
+      rect(food.foodX, food.foodY,8,8);
       fill(0);
       stroke(0);
     
       if(time % speed == 0)
       {
-        snakeMove();
+        snake.snakeMove();
         display();
         snakeAlive();
       }
@@ -62,7 +63,7 @@ void draw() // Contains the menu and calls all the functions for the Snake Game
         background(255);
         fill(0);
         textSize(20);
-        score = str(snakeLength-5);
+        score = str(snake.snakeLength-5);
         text("Your Score", width/2, height/10);
         text(score, width/2, (height/10)*2);
         text("Press 'M' To Return The Menu", width/2, (height/10)*8);
@@ -73,17 +74,17 @@ void draw() // Contains the menu and calls all the functions for the Snake Game
 
 void display() // Function for Updating what is seen on screen 
 {
-   if (snakePartX[1]==foodX && snakePartY[1]==foodY)
+   if(snake.snakePartX[1]==food.foodX && snake.snakePartY[1]==food.foodY)
     {
-    snakeLength+=20;
+    snake.snakeLength+=20;
     redo=true;
     while(redo)
     {
-      getFood();
-      for(int i=1;i<snakeLength;i++)
+      food.getFood();
+      for(int i=1;i<snake.snakeLength;i++)
       {
         
-        if (foodX==snakePartX[i] && foodY==snakePartY[i])
+        if (food.foodX==snake.snakePartX[i] && food.foodY==snake.snakePartY[i])
         {
           redo=true;
         }
@@ -97,82 +98,47 @@ void display() // Function for Updating what is seen on screen
   }
   
   fill(0);
-  rect(snakePartX[1],snakePartY[1],8,8);
+  rect(snake.snakePartX[1],snake.snakePartY[1],8,8);
   fill(255);
-  rect(snakePartX[snakeLength],snakePartY[snakeLength],8,8);
+  rect(snake.snakePartX[snake.snakeLength],snake.snakePartY[snake.snakeLength],8,8);
 }
 
 void restart() // Resets all variables to default states 
 {
   background(255);
-  snakePartX[1]=250;
-  snakePartY[1]=250;
+  snake.snakePartX[1]=250;
+  snake.snakePartY[1]=250;
   for(int i=2;i<2500;i++)
   {
-    snakePartX[i]=0;
-    snakePartY[i]=0;
+    snake.snakePartX[i]=0;
+    snake.snakePartY[i]=0;
   }
-  getFood();
+  food.getFood();
   
-  snakeLength = 5;
+  snake.snakeLength = 5;
   time = 0;
   theta = 0;
   redo = true;
   run = true;
 }
 
-void snakeMove() //Moves the snakeparts in the correct angles chosen by the user
-{
-  for(int i=snakeLength; i>0; i--)
-  {
-    if(i!=1)
-    {
-      snakePartX[i]=snakePartX[i-1];
-      snakePartY[i]=snakePartY[i-1];
-    }//end if
-    
-    else
-    {
-      if(theta == 0)
-      {
-        snakePartX[1] = snakePartX[1] + (width/50);
-      }//end if
-      
-      if(theta == 90)
-      {
-        snakePartY[1] = snakePartY[1] - (height/50);
-      }//end if
-      
-      if(theta == 180)
-      {
-        snakePartX[1] = snakePartX[1] - (width/50);
-      }//end if
-      
-      if(theta == 270)
-      {
-        snakePartY[1] = snakePartY[1] + (height/50);
-      }//end if
-    }//end else 
-  }//end if
-}//end snakeMove()
-
 void snakeAlive()
 {
-  if(snakePartX[1]>(width) || snakePartX[1] < 0)
+  if(snake.snakePartX[1]>(width) || snake.snakePartX[1] < 0)
   {
     option = 4;
     run = false;
   }
     
-  if(snakePartY[1]>(height) || snakePartY[1] <0)
+  if(snake.snakePartY[1]>(height) || snake.snakePartY[1] <0)
   {  
     option = 4;
     run = false;
   }
   
-  for(int i=snakeLength; i>1; i--)
+  for(int i=snake.snakeLength; i>1; i--)
   {
-    if(snakePartX[1] == snakePartX[i] && snakePartY[1] == snakePartY[i])
+    if(snake.snakePartX[1] == snake.snakePartX[i] && snake.snakePartY[1] == snake.snakePartY[i])
     {
       option = 4;
       run = false;
