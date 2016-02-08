@@ -41,21 +41,21 @@ class Segments
 
   void snakeAlive()
   {
-    if (snake.snakePartX[1]>(width-10) || snake.snakePartX[1] < -1)
+    if (snakePartX[1]>(width-10) || snakePartX[1] < -1)
     {
       option = 4;
       run = false;
     }
 
-    if (snake.snakePartY[1]>(height-10) || snake.snakePartY[1] <-1)
+    if (snakePartY[1]>(height-10) || snakePartY[1] <-1)
     {  
       option = 4;
       run = false;
     }
 
-    for (int i=snake.snakeLength; i>1; i--)
+    for (int i=snakeLength; i>1; i--)
     {
-      if (snake.snakePartX[1] == snake.snakePartX[i] && snake.snakePartY[1] == snake.snakePartY[i])
+      if (snakePartX[1] == snakePartX[i] && snakePartY[1] == snakePartY[i])
       {
         option = 4;
         run = false;

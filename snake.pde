@@ -7,6 +7,8 @@ int theta = 0; // Angles at which the snake may travel
 boolean redo = true; // Used to make some things Loop
 boolean run = true;
 String score;
+String[] highScores = loadStrings("highscores.txt");
+
 
 Food food = new Food(10*(round(random(width/10))), 10*(round(random(width/10))));
 Segments snake = new Segments();
@@ -16,6 +18,7 @@ void setup() //Setup Declares the window size and calls functions which set vari
   size(500, 500);
   food.getFood();
   restart();
+  println(highScores);
 }//end setup
 
 void draw() // Contains the menu and calls all the functions for the Snake Game
