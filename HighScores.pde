@@ -8,4 +8,6 @@ class HighScores
     String[] parts = lines.split(",");
     name = parts[0];
     highscore = parts[2];
+  }
+}
     
