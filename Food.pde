@@ -11,7 +11,7 @@ class Food
 
   void getFood() // Gets Co ords for food 
   {
-    foodX=10*(round(random(width/10)));
-    foodY=10*(round(random(width/10)));
+    foodX=10*(round(random((width-10)/10)));
+    foodY=10*(round(random((height-10)/10)));
   }
 }

@@ -76,7 +76,7 @@ void display() // Function for Updating what is seen on screen
 {
    if(snake.snakePartX[1]==food.foodX && snake.snakePartY[1]==food.foodY)
     {
-    snake.snakeLength+=20;
+    snake.snakeLength+=2;
     redo=true;
     while(redo)
     {
@@ -100,6 +100,7 @@ void display() // Function for Updating what is seen on screen
   fill(0);
   rect(snake.snakePartX[1],snake.snakePartY[1],8,8);
   fill(255);
+  stroke(255);
   rect(snake.snakePartX[snake.snakeLength],snake.snakePartY[snake.snakeLength],8,8);
 }
 
