@@ -38,4 +38,28 @@ class Segments
       }//end else
     }//end if
   }//end snakeMove()
+
+  void snakeAlive()
+  {
+    if (snake.snakePartX[1]>(width-10) || snake.snakePartX[1] < -1)
+    {
+      option = 4;
+      run = false;
+    }
+
+    if (snake.snakePartY[1]>(height-10) || snake.snakePartY[1] <-1)
+    {  
+      option = 4;
+      run = false;
+    }
+
+    for (int i=snake.snakeLength; i>1; i--)
+    {
+      if (snake.snakePartX[1] == snake.snakePartX[i] && snake.snakePartY[1] == snake.snakePartY[i])
+      {
+        option = 4;
+        run = false;
+      }
+    }
+  }
 }

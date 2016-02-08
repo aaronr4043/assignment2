@@ -55,7 +55,7 @@ void draw() // Contains the menu and calls all the functions for the Snake Game
       {
         snake.snakeMove();
         display();
-        snakeAlive();
+        snake.snakeAlive();
       }
       
       if(run==false)
@@ -121,30 +121,6 @@ void restart() // Resets all variables to default states
   theta = 0;
   redo = true;
   run = true;
-}
-
-void snakeAlive()
-{
-  if(snake.snakePartX[1]>(width) || snake.snakePartX[1] < 0)
-  {
-    option = 4;
-    run = false;
-  }
-    
-  if(snake.snakePartY[1]>(height) || snake.snakePartY[1] <0)
-  {  
-    option = 4;
-    run = false;
-  }
-  
-  for(int i=snake.snakeLength; i>1; i--)
-  {
-    if(snake.snakePartX[1] == snake.snakePartX[i] && snake.snakePartY[1] == snake.snakePartY[i])
-    {
-      option = 4;
-      run = false;
-    }
-  }
 }
 
 void keyPressed() // Contains all the controls
