@@ -1,4 +1,5 @@
 // C14396626 Aaron Renaghan Snake Game
+import ddf.minim.*;
 
 int option = 0; // Used as a variable to see what the user wants 
 int speed = 0; // Variable determines how often The snake moves forward once
@@ -7,7 +8,9 @@ int theta = 0; // Angles at which the snake may travel
 boolean redo = true; // Used to make some things Loop
 boolean run = true;
 String score;
-ArrayList<HighScores> highScores = new ArrayList<HighScores>();
+AudioSnippet MGS;
+Minim minim;
+//ArrayList<HighScores> highScores = new ArrayList<HighScores>();
 
 Food food = new Food(10*(round(random(width/10))), 10*(round(random(width/10))));
 Segments snake = new Segments();
@@ -17,11 +20,20 @@ void setup() //Setup Declares the window size and calls functions which set vari
   size(500, 500);
   food.getFood();
   restart();
-  loadStats();
+  
+  minim = new Minim(this);
+  MGS = minim.loadSnippet("MGS.wav");
+  //loadStats();
 }//end setup
 
 void draw() // Contains the menu and calls all the functions for the Snake Game
 {
+  MGS(MGSNow);
+  
+  MGSNow = true;
+  MGS.rewind();
+  MGS.play();
+  
   if (option == 0)
   {
     background(255);
@@ -125,9 +137,10 @@ void restart() // Resets all variables to default states
   run = true;
 }
 
+/*
 void loadStats() // The function for loading in all the Data
 {
-  String[] lines = loadStrings("highscores.txt");
+  String[] lines = loadStrings("record.txt");
 
   for (int i = 0 ; i < lines.length ; i ++)
   {
@@ -135,6 +148,8 @@ void loadStats() // The function for loading in all the Data
     highScores.add(highscore);
   }
 }
+
+*/
 
 void keyPressed() // Contains all the controls
 {
