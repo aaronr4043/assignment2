@@ -91,7 +91,8 @@ void draw() // Contains the menu and calls all the functions for the Snake Game
           
         }
         
-        text(temp, width/2, height/2);
+        text(floor(temp), width/2, (height/10)*6);
+        text("Highscore is:", width/2, (height/10)*5);
         text("Press 'M' To Return The Menu", width/2, (height/10)*8);
       }
     } //enf if

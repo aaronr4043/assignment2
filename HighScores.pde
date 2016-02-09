@@ -1,13 +1,13 @@
 class HighScores
 {
   String name;
-  float highscore;
+  int highscore;
   
   HighScores(String lines)
   {
     String[] parts = lines.split(",");
     name = parts[0];
-    highscore = parseFloat(parts[1]);
+    highscore = Integer.parseInt(parts[1]);
   }
 }
     
