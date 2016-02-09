@@ -45,6 +45,17 @@ void draw() // Contains the menu and calls all the functions for the Snake Game
     textAlign(CENTER);
     text("Welcome to Snake", width/2, height/4);
     
+    fill(0);
+    rect(snake.snakePartX[1]-20,snake.snakePartY[1],8,8);
+    rect(snake.snakePartX[1]-10,snake.snakePartY[1],8,8);
+    rect(snake.snakePartX[1],snake.snakePartY[1],8,8);
+    rect(snake.snakePartX[1]+10,snake.snakePartY[1],8,8);
+    rect(snake.snakePartX[1]+20,snake.snakePartY[1],8,8);
+    rect(snake.snakePartX[1]-20,snake.snakePartY[1]-20,8,8);
+    rect(snake.snakePartX[1]-20,snake.snakePartY[1]-10,8,8);
+    rect(snake.snakePartX[1]+20,snake.snakePartY[1]+10,8,8);
+    rect(snake.snakePartX[1]+20,snake.snakePartY[1]+20,8,8);
+    
     textSize(10);
     text("Press 1 for Slug Mode", width/4, (height/4)*3);
     text("Press 2 for Snake Mode", (width/4)*2, (height/4)*3);
