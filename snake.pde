@@ -1,5 +1,11 @@
 // C14396626 Aaron Renaghan Snake Game
+
 import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
 Minim minim;
 
 int option = 0; // Used as a variable to see what the user wants 
@@ -9,8 +15,9 @@ int theta = 0; // Angles at which the snake may travel
 boolean redo = true; // Used to make some things Loop
 boolean run = true;
 String score;
-boolean MGSNow = true;
+float temp;
 ArrayList<HighScores> highScores = new ArrayList<HighScores>();
+AudioPlayer MGS;
 
 Food food = new Food(10*(round(random(width/10))), 10*(round(random(width/10))));
 Segments snake = new Segments();
@@ -20,9 +27,12 @@ void setup() //Setup Declares the window size and calls functions which set vari
   size(500, 500);
   food.getFood();
   restart();
-  
-    minim = new Minim(this);
-  //loadStats();
+  minim = new Minim(this);
+  MGS = minim.loadFile("/data/MGS2.wav");
+
+  loadStats();
+  MGS.rewind();
+  MGS.play();
 }//end setup
 
 void draw() // Contains the menu and calls all the functions for the Snake Game
@@ -74,6 +84,14 @@ void draw() // Contains the menu and calls all the functions for the Snake Game
         score = str(snake.snakeLength-5);
         text("Your Score", width/2, height/10);
         text(score, width/2, (height/10)*2);
+        temp = highScores.get(0).highscore;
+        if(snake.snakeLength-5 > temp)
+        {
+          temp = snake.snakeLength-5;
+          
+        }
+        
+        text(temp, width/2, height/2);
         text("Press 'M' To Return The Menu", width/2, (height/10)*8);
       }
     } //enf if
@@ -134,18 +152,15 @@ void restart() // Resets all variables to default states
 
 void loadStats() // The function for loading in all the Data
 {
-  String[] lines = loadStrings("record.txt");
+  String[] lines = loadStrings("record.csv");
 
   for (int i = 0 ; i < lines.length ; i ++)
   {
     HighScores highscore = new HighScores(lines[i]);
     highScores.add(highscore);
   }
-}
-
-void MGS(boolean now2)
-{
   
+  println(highScores);
 }
 
 void keyPressed() // Contains all the controls
