@@ -7,8 +7,7 @@ int theta = 0; // Angles at which the snake may travel
 boolean redo = true; // Used to make some things Loop
 boolean run = true;
 String score;
-String[] highScores = loadStrings("highscores.txt");
-
+ArrayList<HighScores> highScores = new ArrayList<HighScores>();
 
 Food food = new Food(10*(round(random(width/10))), 10*(round(random(width/10))));
 Segments snake = new Segments();
@@ -18,7 +17,6 @@ void setup() //Setup Declares the window size and calls functions which set vari
   size(500, 500);
   food.getFood();
   restart();
-  println(highScores);
   loadStats();
 }//end setup
 
@@ -129,12 +127,12 @@ void restart() // Resets all variables to default states
 
 void loadStats() // The function for loading in all the Data
 {
-  String[] lines = loadStrings("highscore.txt");
+  String[] lines = loadStrings("highscores.txt");
 
   for (int i = 0 ; i < lines.length ; i ++)
   {
     HighScores highscore = new HighScores(lines[i]);
-    subscribers.add(subscriber);
+    highScores.add(highscore);
   }
 }
 
