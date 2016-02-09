@@ -19,6 +19,7 @@ void setup() //Setup Declares the window size and calls functions which set vari
   food.getFood();
   restart();
   println(highScores);
+  loadStats();
 }//end setup
 
 void draw() // Contains the menu and calls all the functions for the Snake Game
@@ -124,6 +125,17 @@ void restart() // Resets all variables to default states
   theta = 0;
   redo = true;
   run = true;
+}
+
+void loadStats() // The function for loading in all the Data
+{
+  String[] lines = loadStrings("highscore.txt");
+
+  for (int i = 0 ; i < lines.length ; i ++)
+  {
+    HighScores highscore = new HighScores(lines[i]);
+    subscribers.add(subscriber);
+  }
 }
 
 void keyPressed() // Contains all the controls
