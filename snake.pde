@@ -1,5 +1,6 @@
 // C14396626 Aaron Renaghan Snake Game
 import ddf.minim.*;
+Minim minim;
 
 int option = 0; // Used as a variable to see what the user wants 
 int speed = 0; // Variable determines how often The snake moves forward once
@@ -9,9 +10,7 @@ boolean redo = true; // Used to make some things Loop
 boolean run = true;
 String score;
 boolean MGSNow = true;
-AudioSnippet MGS;
-Minim minim;
-//ArrayList<HighScores> highScores = new ArrayList<HighScores>();
+ArrayList<HighScores> highScores = new ArrayList<HighScores>();
 
 Food food = new Food(10*(round(random(width/10))), 10*(round(random(width/10))));
 Segments snake = new Segments();
@@ -22,14 +21,7 @@ void setup() //Setup Declares the window size and calls functions which set vari
   food.getFood();
   restart();
   
-  minim = new Minim(this);
-  MGS = minim.loadSnippet("MGS2.wav");
-  
-  MGS(MGSNow);
-  
-  MGSNow = true;
-  MGS.rewind();
-  MGS.play();
+    minim = new Minim(this);
   //loadStats();
 }//end setup
 
@@ -139,7 +131,7 @@ void restart() // Resets all variables to default states
   run = true;
 }
 
-/*
+
 void loadStats() // The function for loading in all the Data
 {
   String[] lines = loadStrings("record.txt");
@@ -150,8 +142,6 @@ void loadStats() // The function for loading in all the Data
     highScores.add(highscore);
   }
 }
-
-*/
 
 void MGS(boolean now2)
 {
