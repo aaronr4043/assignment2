@@ -1,11 +1,9 @@
-
-
 class Segments
 {
   int snakeLength = 5; //Length of the snake
   int[] snakePartX = new int[2500]; //Array of X Co Ords
   int[] snakePartY = new int[2500]; //Array of Y Co Ords
-
+  
   void snakeMove() //Moves the snakeparts in the correct angles chosen by the user
   {
     for (int i=snakeLength; i>0; i--)
@@ -54,7 +52,9 @@ class Segments
     {  
       option = 4;
       run = false;
+      MGS.rewind();
       MGS.play();
+      MGS.rewind();
     }
 
     for (int i=snakeLength; i>1; i--)
@@ -63,7 +63,9 @@ class Segments
       {
         option = 4;
         run = false;
+        MGS.rewind();
         MGS.play();
+        MGS.rewind();
       }
     }
   }

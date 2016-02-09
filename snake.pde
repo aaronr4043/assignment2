@@ -31,8 +31,6 @@ void setup() //Setup Declares the window size and calls functions which set vari
   MGS = minim.loadFile("/data/MGS2.wav");
 
   loadStats();
-  MGS.rewind();
-  MGS.play();
 }//end setup
 
 void draw() // Contains the menu and calls all the functions for the Snake Game
