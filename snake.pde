@@ -8,6 +8,7 @@ int theta = 0; // Angles at which the snake may travel
 boolean redo = true; // Used to make some things Loop
 boolean run = true;
 String score;
+boolean MGSNow = true;
 AudioSnippet MGS;
 Minim minim;
 //ArrayList<HighScores> highScores = new ArrayList<HighScores>();
@@ -22,17 +23,18 @@ void setup() //Setup Declares the window size and calls functions which set vari
   restart();
   
   minim = new Minim(this);
-  MGS = minim.loadSnippet("MGS.wav");
-  //loadStats();
-}//end setup
-
-void draw() // Contains the menu and calls all the functions for the Snake Game
-{
+  MGS = minim.loadSnippet("MGS2.wav");
+  
   MGS(MGSNow);
   
   MGSNow = true;
   MGS.rewind();
   MGS.play();
+  //loadStats();
+}//end setup
+
+void draw() // Contains the menu and calls all the functions for the Snake Game
+{
   
   if (option == 0)
   {
@@ -150,6 +152,11 @@ void loadStats() // The function for loading in all the Data
 }
 
 */
+
+void MGS(boolean now2)
+{
+  
+}
 
 void keyPressed() // Contains all the controls
 {
