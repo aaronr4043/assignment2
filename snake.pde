@@ -18,6 +18,7 @@ String score;
 float temp;
 ArrayList<HighScores> highScores = new ArrayList<HighScores>();
 AudioPlayer MGS;
+HighScores[] highscore = new HighScores[1];
 
 Food food = new Food(10*(round(random(width/10))), 10*(round(random(width/10))));
 Segments snake = new Segments();
@@ -27,9 +28,11 @@ void setup() //Setup Declares the window size and calls functions which set vari
   size(500, 500);
   food.getFood();
   restart();
+  noCursor();
+  
   minim = new Minim(this);
   MGS = minim.loadFile("/data/MGS2.wav");
-
+  
   loadStats();
 }//end setup
 
@@ -93,11 +96,10 @@ void draw() // Contains the menu and calls all the functions for the Snake Game
         score = str(snake.snakeLength-5);
         text("Your Score", width/2, height/10);
         text(score, width/2, (height/10)*2);
-        temp = highScores.get(0).highscore;
+        temp = highscore[0].highscore;
         if(snake.snakeLength-5 > temp)
         {
-          temp = snake.snakeLength-5;
-          
+         temp = snake.snakeLength-5;
         }
         
         text(floor(temp), width/2, (height/10)*6);
@@ -160,17 +162,23 @@ void restart() // Resets all variables to default states
 }
 
 
-void loadStats() // The function for loading in all the Data
+void loadStats()
 {
-  String[] lines = loadStrings("record.csv");
 
-  for (int i = 0 ; i < lines.length ; i ++)
+  highscore[0]=new HighScores();
+
+  String[] s2 = loadStrings("record.csv");
+  int i=0;
+
+  i=0;
+  for (String line : s2)
   {
-    HighScores highscore = new HighScores(lines[i]);
-    highScores.add(highscore);
+    String[] splitter=line.split(",");
+    highscore[0].highscore=Integer.parseInt(splitter[0]);
+    i++;
   }
   
-  println(highScores);
+  println(highscore[0]);
 }
 
 void keyPressed() // Contains all the controls
