@@ -2,4 +2,3 @@ class HighScores
 {
   int highscore;
 }
-    
