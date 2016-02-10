@@ -45,7 +45,9 @@ class Segments
     {
       option = 4;
       run = false;
+      MGS.rewind();
       MGS.play();
+      MGS.rewind();
     }
 
     if (snakePartY[1]>(height-10) || snakePartY[1] <-1)

@@ -15,7 +15,7 @@ int theta = 0; // Angles at which the snake may travel
 boolean redo = true; // Used to make some things Loop
 boolean run = true;
 String score;
-String score1;
+int score1;
 String score2[];
 String line;
 String[] scores;
@@ -41,8 +41,7 @@ void setup() //Setup Declares the window size and calls functions which set vari
 }//end setup
 
 void draw() // Contains the menu and calls all the functions for the Snake Game
-{
-
+{ 
   if (option == 0)
   {
     background(255);
@@ -94,20 +93,23 @@ void draw() // Contains the menu and calls all the functions for the Snake Game
 
       if (run==false)
       {
+        loadStats();
+        
         background(255);
         fill(0);
         textSize(20);
-        score1 = str(snake.snakeLength-5);
+        score1 = snake.snakeLength-5;
         text("Your Score", width/2, height/10);
-        int number = Integer.parseInt(score1);
+        //int number = score1;
         int number2 = Integer.parseInt(score);
-        text(number, width/2, (height/10)*2);
-        String sb = (score);
-        temp = sb;
+        text(score1, width/2, (height/10)*2);
+        //String sb = (score);
+        //temp = sb;
         
-        if (number > number2)
+        if (score1 > number2)
         {
-          String b = str(number);
+          number2 = score1;
+          String b = str(number2);
           String[] list = split(b, " ");
           saveStrings("record.txt", list);
         }
@@ -149,6 +151,9 @@ void display() // Function for Updating what is seen on screen
   fill(255);
   stroke(255);
   rect(snake.snakePartX[snake.snakeLength], snake.snakePartY[snake.snakeLength], 8, 8);
+  
+  stroke(0);
+  line(0, 0, width, 0);
 }
 
 void restart() // Resets all variables to default states 
