@@ -1,4 +1,0 @@
-class HighScores
-{
-  int highscore;
-}

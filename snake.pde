@@ -1,6 +1,7 @@
 // C14396626 Aaron Renaghan Snake Game
+//12/02/2016
 
-import ddf.minim.*;
+import ddf.minim.*; // Loading in the Minim Library
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
 import ddf.minim.signals.*;
@@ -13,36 +14,29 @@ int speed = 0; // Variable determines how often The snake moves forward once
 int time = 0; // Counts time which is used in conjunction with Speed to determine when to move snake
 int theta = 0; // Angles at which the snake may travel
 boolean redo = true; // Used to make some things Loop
-boolean run = true;
+boolean run = true; 
 String score;
 int score1;
-String score2[];
-String line;
-String[] scores;
-String temp;
-ArrayList<HighScores> highScores = new ArrayList<HighScores>();
-AudioPlayer MGS;
-HighScores[] highscore = new HighScores[1];
+//String temp;
+AudioPlayer MGS; // Initiating the MGS Snake scream
 
-Food food = new Food(10*(round(random(width/10))), 10*(round(random(width/10))));
+Food food = new Food(10*(round(random(width/10))), 10*(round(random(width/10)))); // Initiating classes
 Segments snake = new Segments();
 
 void setup() //Setup Declares the window size and calls functions which set variables
 {
   size(500, 500);
-  food.getFood();
-  restart();
+  food.getFood(); // getting the first instance of food
+  restart(); // Initiates variables
   noCursor();
 
-  minim = new Minim(this);
+  minim = new Minim(this); // Loading the correct sound into MGS
   MGS = minim.loadFile("/data/MGS2.wav");
-
-  loadStats();
 }//end setup
 
 void draw() // Contains the menu and calls all the functions for the Snake Game
 { 
-  if (option == 0)
+  if (option == 0) //drawing the Menu
   {
     background(255);
     stroke(0);
@@ -52,7 +46,7 @@ void draw() // Contains the menu and calls all the functions for the Snake Game
     text("Welcome to Snake", width/2, height/4);
 
     fill(0);
-    rect(snake.snakePartX[1]-20, snake.snakePartY[1], 8, 8);
+    rect(snake.snakePartX[1]-20, snake.snakePartY[1], 8, 8); //Drawing the snake on the home screen
     rect(snake.snakePartX[1]-10, snake.snakePartY[1], 8, 8);
     rect(snake.snakePartX[1], snake.snakePartY[1], 8, 8);
     rect(snake.snakePartX[1]+10, snake.snakePartY[1], 8, 8);
@@ -84,14 +78,14 @@ void draw() // Contains the menu and calls all the functions for the Snake Game
       fill(0);
       stroke(0);
 
-      if (time % speed == 0)
+      if (time % speed == 0) // Using a mod of framerate to determine when things move eg every 5 frames
       {
         snake.snakeMove();
         display();
         snake.snakeAlive();
       }
 
-      if (run==false)
+      if (run==false) // Game over screen
       {
         loadStats();
         
@@ -100,13 +94,10 @@ void draw() // Contains the menu and calls all the functions for the Snake Game
         textSize(20);
         score1 = snake.snakeLength-5;
         text("Your Score", width/2, height/10);
-        //int number = score1;
         int number2 = Integer.parseInt(score);
         text(score1, width/2, (height/10)*2);
-        //String sb = (score);
-        //temp = sb;
         
-        if (score1 > number2)
+        if (score1 > number2) // If you beat the highscore this rewrites the text file
         {
           number2 = score1;
           String b = str(number2);
@@ -146,7 +137,7 @@ void display() // Function for Updating what is seen on screen
     }
   }
 
-  fill(0);
+  fill(0); // Covering up the snake
   rect(snake.snakePartX[1], snake.snakePartY[1], 8, 8);
   fill(255);
   stroke(255);
@@ -176,14 +167,12 @@ void restart() // Resets all variables to default states
 }
 
 
-void loadStats()
+void loadStats() // Reads in the initial stats
 {
   String[] lines = loadStrings("record.txt");
-  for (String line : lines) //convert .csv file to string 
+  for (String line : lines) 
   {
-     score=(line); //put into the class
-    //highscore.add(highscore);
-    //println(highscore[0]);
+     score=(line);
   }
 }
 void keyPressed() // Contains all the controls
@@ -191,7 +180,7 @@ void keyPressed() // Contains all the controls
   if (key == '1' && option==0)
   {
     option = 1;
-    speed = 7;
+    speed = 7; // Sets how frequently the snake updates position
   }//end if
 
   if (key == '2' && option==0)
@@ -206,13 +195,13 @@ void keyPressed() // Contains all the controls
     speed = 3;
   }//end if
 
-  if (key == 'm')
+  if (key == 'm'|| key == 'M' ) // Feturns Player to the menu
   {
     option = 0;
     restart();
   }//end if
 
-  if (key == 'w' && option>0 &&theta != 270)
+  if (key == 'w' && option>0 &&theta != 270) // Angles at which the snake moves
   {
     theta = 90;
   }//end if

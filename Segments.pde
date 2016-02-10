@@ -39,7 +39,7 @@ class Segments
     }//end if
   }//end snakeMove()
 
-  void snakeAlive()
+  void snakeAlive() // Checks if the head of the snake is whacking its head off the wall or itself
   {
     if (snakePartX[1]>(width-10) || snakePartX[1] < -1)
     {
